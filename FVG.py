@@ -25,7 +25,7 @@ class FVG:
         l, helper = len(self.alpha_list) // m, self.alpha_count
         return sum(list((helper(m,x,key_pos)**2-helper(m,x,key_pos)) / (l**2-l) for x in range(26)))
 
-    def IC_(self, m, key_pos):
+    def Cor(self, m, key_pos):
         def helper(mov):
             l = len(self.alpha_list) // m
             return sum(list(self.alpha_count(m,x,key_pos,mov)*self.std_p[x]/l for x in range(26)))
@@ -44,4 +44,4 @@ class FVG:
         return gcd(*leap)
         
     def get_key(self, m):
-        return ''.join(list(self.n_alpha[self.IC_(m, pos).index(max(self.IC_(m, pos)))] for pos in range(m)))
+        return ''.join(list(self.n_alpha[self.Cor(m, pos).index(max(self.Cor(m, pos)))] for pos in range(m)))
